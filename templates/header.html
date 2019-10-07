@@ -1,0 +1,32 @@
+
+
+<div class="navbar navbar-default navbar-fixed-top" id="main-nav">
+    <div class="container desktop">
+        <div class="navbar-header">
+            <a href="{% url 'posts' %}" class="navbar-brand">Insta</a>
+        </div>
+
+        <div id="navbar-main">
+            <ul class="nav navbar-nav navbar-right">
+                {% if request.user.is_authenticated %}
+                    <li>
+                      <a href="{% url 'posts' %}">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li><a href="{% url 'helloworld' %}"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                    <li><a href="{% url 'make_post' %}"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+                    <li><a href="{% url 'user_detail' user.id %}"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                    <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'login' %}">login</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'signup' %}">signup</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>

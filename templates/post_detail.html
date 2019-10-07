@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load custom_tags %}
+
+{% block content %}
+
+<div class="row single-post">
+    <div class="single-post-card view-update {{ object.pk }}">
+        <div class="header">
+            <a href="{% url 'user_detail' object.author.id %}">
+                {% if object.author.profile_pic %}
+                    <img class="picture-circle--medium" src="/{{object.author.profile_pic}}">
+                {% endif %}
+                {{ object.author.username }}
+            </a>
+        </div>
+        <div class="image__wrapper">
+            <img class="card__main-image" src="/{{object.image}}" width='1000', height='1000'>
+        </div>
+        <div class="comments-portion">
+            <div class="likes-timestamp-row">
+                <div class="likes">
+                    {% if object.get_like_count %}
+                        {{ object.get_like_count }} like{% if object.get_like_count > 1 %}s{% endif %}
+                    {% endif %}
+                </div>
+            </div>
+
+            <section class="input-row">
+                <i class="fa {% has_user_liked_post object user %} submit-like" aria-hidden="true"></i>
+                <div class="hidden-data {{ post.pk }}" style="display: none;">
+                        <span class="post-pk">{{ post.pk }}</span>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
