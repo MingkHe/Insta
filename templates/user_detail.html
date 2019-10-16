@@ -17,7 +17,9 @@
                 <div class="name-buttons">
                     <h1 class="username">{{ object.username }}</h1>
                     {% if user == object %}
-                        <button class="edit-profile">Edit Profile</button>
+                        <a class="edit-desktop" href="{% url 'user_detail_update' object.pk %}">
+                            <button class="edit-profile" >Edit Profile</button>
+                        </a>
                     {% else %}
                         {% if request.user.is_authenticated %}
                             {% is_following user object as following %}
@@ -55,6 +57,7 @@
                         <a href="{% url 'post_detail' post.pk %}">
                         <div class="content">
                             <i class="fa fa-heart" aria-hidden="true"></i> {{ post.get_like_count }}
+                            <i class="fa fa-comment" aria-hidden="true"></i> {{ post.get_comment_count }}
                         </div>
                         </a>
                     </div>

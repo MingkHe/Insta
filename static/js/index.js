@@ -15,7 +15,7 @@ function create_like(success_cb, error_cb) {
 
     $.ajax({
         type: "POST",
-        url: "/Insta/like/",
+        url: "/like/",
         data: {
             post_pk: post_pk
         },
@@ -84,7 +84,7 @@ function create_comment(success_cb, error_cb) {
   
     $.ajax({
       type: "POST",
-      url: '/comment',
+      url: '/comment/',
       data: {
         comment_text: comment_text,
         post_pk: post_pk
@@ -125,7 +125,7 @@ function follow_user(success_cb, error_cb, type) {
   
     $.ajax({
       type: "POST",
-      url: '/togglefollow',
+      url: '/togglefollow/',
       data: {
         follow_user_pk: follow_user_pk,
         type: type
@@ -160,10 +160,10 @@ function update_unfollow_view(data) {
 }
 
 
-// $('.follow-toggle__container').on('click', '.follow-user', function() {
-//     follow_user.call(this, update_follow_view, error_cb, 'follow');
-// });
+$('.follow-toggle__container').on('click', '.follow-user', function() {
+    follow_user.call(this, update_follow_view, error_cb, 'follow');
+});
 
-// $('.follow-toggle__container').on('click', '.unfollow-user', function() {
-//     follow_user.call(this, update_unfollow_view, error_cb, 'unfollow');
-// });
+$('.follow-toggle__container').on('click', '.unfollow-user', function() {
+    follow_user.call(this, update_unfollow_view, error_cb, 'unfollow');
+});
